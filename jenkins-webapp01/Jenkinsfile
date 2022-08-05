@@ -1,12 +1,13 @@
 node{
 
   stage('SCM Checkout'){
-    def mavenHome =  tool name: 'MY_MAVEN3', type: 'maven'
     git branch: 'main', url: 'https://github.com/didokabanga/jenkins-apps.git'
   }
 
   stage('Compile-Package'){
-    sh 'maven package'
+    // Get Maven Home Path
+    def mavenHome =  tool name: 'MY_MAVEN3', type: 'maven'
+    sh "{mavenHome}/bin/mvn package"
   }
 
 }
