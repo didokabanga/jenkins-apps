@@ -1,0 +1,11 @@
+node{
+
+  stage('SCM Checkout'){
+    git 'https://github.com/didokabanga/jenkins-apps/tree/main/jenkins-webapp01'
+  }
+
+  stage('Compile-Package'){
+    sh 'maven package'
+  }
+
+}
