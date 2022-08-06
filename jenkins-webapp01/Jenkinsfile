@@ -29,8 +29,11 @@ pipeline {
     stage("deploy-dev"){
       steps{
           sshagent(['tomcat-cred']) {
-          sh """
-          scp -o StrictHostKeyChecking=no target/myweb01.war admin01@192.168.70.23:/opt/tomcat/webapps/
+          sh """ 
+          
+          scp -o StrictHostKeyChecking=no target/myweb01.war admin01@192.168.70.23:/dslib
+          ssh -o StrictHostKeyChecking=no admin01@192.168.70.23 'cp -r /dslib//myweb01.war /opt/tomcat/webapps/' 
+           
           """
           }
       }
