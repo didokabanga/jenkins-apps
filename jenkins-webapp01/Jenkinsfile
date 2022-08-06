@@ -31,7 +31,7 @@ pipeline {
           sshagent(['tomcat-cred']) {
           sh """ 
           
-          scp -o StrictHostKeyChecking=no target/myweb01.war admin01@192.168.70.23:/dslib
+          scp -o StrictHostKeyChecking=no jenkins-webapp01/target/myweb01.war admin01@192.168.70.23:/dslib
           ssh -o StrictHostKeyChecking=no admin01@192.168.70.23 'cp -r /dslib//myweb01.war /opt/tomcat/webapps/' 
            
           """
