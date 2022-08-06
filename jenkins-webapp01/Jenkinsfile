@@ -17,7 +17,7 @@ pipeline {
 
     stage("Maven Build"){
       steps{
-          echo "PATH is: ${MAVEN_HOMEH}"
+          echo "PATH is: ${MAVEN_HOME}"
           sh "${MAVEN_HOME}/bin/mvn package"
       }
     }
