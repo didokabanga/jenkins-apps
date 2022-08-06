@@ -18,7 +18,10 @@ pipeline {
     stage("Maven Build"){
       steps{
           echo "PATH is: $PATH"
-          sh "mvn clean package"
+           dir('jenkins-webapp01/') {
+              // some block
+              sh "mvn clean package"
+           }
       }
     }
 
