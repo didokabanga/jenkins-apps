@@ -4,6 +4,7 @@ pipeline {
 
   environment {
     PATH = "/opt/maven/bin:${env.PATH}"
+    MAVEN_HOME = tool name: 'MY_MAVEN3', type: 'maven'
   }
 
   stages {
@@ -16,8 +17,8 @@ pipeline {
 
     stage("Maven Build"){
       steps{
-          echo "PATH is: ${env.PATH}"
-          sh "mvn clean package"
+          echo "PATH is: ${MAVEN_HOMEH}"
+          sh "${MAVEN_HOME}/bin/mvn package"
       }
     }
 
