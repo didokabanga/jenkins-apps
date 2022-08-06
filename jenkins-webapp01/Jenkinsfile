@@ -1,17 +1,25 @@
-node{
+pipeline {
 
-  stage('SCM Checkout'){
-    git branch: 'main', url: 'https://github.com/didokabanga/jenkins-apps.git'
+  agent any
+
+  environment {
+     PATH = "/opt/maven/bin:$PATH"
   }
 
-  stage('Compile-Package'){
-    // Get Maven Home Path
-    def mvnHome =  tool name: 'MY_MAVEN3', type: 'maven'
- 
-    dir('jenkins-webapp01/') {
-         // some block
-         sh "${mvnHome}/bin/mvn package"
+  stages {
+
+    stage("Git Checkout"){
+      steps{
+          git branch: 'main', url: 'https://github.com/didokabanga/jenkins-apps.git'
+      }
     }
+
+    stage("Maven Build"){
+      steps{
+          sh "mvn clean package"
+      }
+    }
+
   }
 
 }
