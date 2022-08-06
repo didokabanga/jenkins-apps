@@ -32,6 +32,7 @@ pipeline {
           sh """
           scp -o StrictHostKeyChecking=no target/myweb.war admin01@192.168.70.23:/opt/tomcat/webapps 
           """
+          }
       }
     }//stage
 
