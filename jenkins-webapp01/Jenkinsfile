@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   environment {
-    PATH = "/opt/maven/bin:${env.PATH}"
+    PATH = "/opt/maven/bin:$PATH"
     MAVEN_HOME = tool name: 'MY_MAVEN3', type: 'maven'
   }
 
@@ -17,8 +17,8 @@ pipeline {
 
     stage("Maven Build"){
       steps{
-          echo "PATH is: ${MAVEN_HOME}"
-          sh "${MAVEN_HOME}/bin/mvn package"
+          echo "PATH is: $PATH"
+          sh "mvn clean package"
       }
     }
 
