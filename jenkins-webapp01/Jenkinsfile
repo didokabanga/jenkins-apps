@@ -21,10 +21,20 @@ pipeline {
            dir('jenkins-webapp01/') {
               // some block
               sh "mvn clean package"
+              sh "mv target/*.war target/myweb01.war"
            }
       }
-    }
+    } // stage
+    
+    stage("deploy-dev"){
+      steps{
+          sshagent(['tomcat-cred']) {
+          sh """
+          scp -o StrictHostKeyChecking=no target/myweb.war admin01@192.168.70.23:/opt/tomcat/webapps 
+          """
+      }
+    }//stage
 
-  }
+  }//stages
 
-}
+}//pipeline
