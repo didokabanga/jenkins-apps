@@ -28,14 +28,19 @@ pipeline {
     
     stage("deploy-dev"){
       steps{
-          sshagent(['tomcat-cred']) {
-          sh """ 
+          dir('jenkins-webapp01/') {
+
+            sshagent(['tomcat-cred']) {
+            sh """ 
           
-          scp -o StrictHostKeyChecking=no jenkins-webapp01/target/myweb01.war root@192.168.70.23:/dslib
-          ssh -o StrictHostKeyChecking=no root@192.168.70.23 'cp -r /dslib//myweb01.war /opt/tomcat/webapps/' 
+            scp -o StrictHostKeyChecking=no jenkins-webapp01/target/myweb01.war root@192.168.70.23:/dslib
+            ssh -o StrictHostKeyChecking=no root@192.168.70.23 'cp -r /dslib//myweb01.war /opt/tomcat/webapps/' 
            
-          """
-          }
+            """
+            }
+            
+           }
+
       }
     }//stage
 
