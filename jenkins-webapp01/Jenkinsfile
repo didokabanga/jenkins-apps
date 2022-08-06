@@ -27,9 +27,7 @@ pipeline {
     } // stage
     
     stage("deploy-dev"){
-      steps{
-          dir('jenkins-webapp01/') {
-
+      steps{ 
             sshagent(['tomcat-cred']) {
             sh """ 
           
@@ -37,9 +35,7 @@ pipeline {
             ssh -o StrictHostKeyChecking=no root@192.168.70.23 'cp -r /dslib//myweb01.war /opt/tomcat/webapps/' 
            
             """
-            }
-            
-           }
+            } 
 
       }
     }//stage
