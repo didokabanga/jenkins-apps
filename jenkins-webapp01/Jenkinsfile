@@ -33,10 +33,7 @@ pipeline {
            }
       }
     } // stage
-    
-    stage("deploy-dev"){ 
-    }//stage
-
+ 
   }//stages
 
 }//pipeline
